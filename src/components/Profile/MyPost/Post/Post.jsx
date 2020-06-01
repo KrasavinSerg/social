@@ -1,12 +1,14 @@
 import React from 'react';
 import s from './Post.module.scss';
 
-const Post = () => {
+const Post = (props) => {
+  
   return (
     <div>
       <div className={s.item}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQihpPg13UyFBVFKfGbZZRuvrtGtiuCPKS9Gh84AxMmmsItool2&usqp=CAU" alt='avatarka' />
-        post 1
+        <img src='https://img.icons8.com/color/48/000000/ninja-head.png' alt='avatarka' />
+        <div>{props.message}</div>
+        <div>Like: <span>{props.like}</span></div>
       </div>
     </div>
   );

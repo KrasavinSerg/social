@@ -7,9 +7,14 @@
   display: grid;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px; */
+  grid-gap: 10px;
 
   grid-template-areas: 
   'header header header'
   'nav profile profile';
+}
+
+.app-wrapper-content {
+  grid-area: profile;
+  background-color: lightskyblue;
 }

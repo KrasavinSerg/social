@@ -3,16 +3,39 @@ import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
+import Diologs from './components/Diologs/Diologs';
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
+import {BrowserRouter, Route} from 'react-router-dom';
 
-function App() {
+
+function App(props) {
+  
   return (
-    <div className="app-container">
-      <div className="app-wrapper">
-        <Header />
-        <Sidebar />
-        <Profile />
+    <BrowserRouter>
+      <div className='app-container'>
+        <div className='app-wrapper'>
+          <Header />
+          <Sidebar state={props.state.sidedar} />
+          <div className='app-wrapper-content'>
+            <Route path='/Diologs' render={() => <Diologs 
+              diologPage={props.state.diologPage} 
+              addMessage={props.addMessage}
+              updateNewMessageText={props.updateNewMessageText}
+            />} />
+            <Route path='/Profile' render={() => <Profile 
+              profilePage={props.state.profilePage} 
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText}
+            />} />
+            <Route path='/News' component={News} />
+            <Route path='/Music' component={Music} />
+            <Route path='/Settings' component={Settings} />
+          </div>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
