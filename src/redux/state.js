@@ -28,50 +28,49 @@ let store = {
       ]
     }
   },
+ 
+  _callSubscriber () {
+    console.log('State changed');
+  },
+
   getState () {
     debugger
     return this._state;
   },
 
-  _callSubscriber () {
-    console.log('State changed');
-  },
-
-  addPost () {
-    debugger
-    let newPost = {
-      id : 5, 
-      message : this._state.profilePage.newPostText, 
-      likeCount : 0
-    };
-    
-    this._state.profilePage.postData.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateNewPostText (newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-
-  addMessage () {
-    let newMessage = {
-      message : this._state.diologPage.newMessageText
-    };
-  
-    this._state.diologPage.messageData.push(newMessage);
-    this._state.diologPage.newMessageText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateNewMessageText (newText) {
-    this._state.diologPage.newMessageText = newText;
-    this._callSubscriber(this._state);
-  },
-
   subscribe (observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch (action) {
+    if (action.type === 'ADD-POST') {
+      let newPost = {
+        id : 5, 
+        message : this._state.profilePage.newPostText, 
+        likeCount : 0
+      };
+      
+      this._state.profilePage.postData.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
+    } 
+    else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } 
+    else if (action.type === 'ADD-MESSAGE') {
+      let newMessage = {
+        message : this._state.diologPage.newMessageText
+      };
+    
+      this._state.diologPage.messageData.push(newMessage);
+      this._state.diologPage.newMessageText = '';
+      this._callSubscriber(this._state);
+    }
+    else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+      this._state.diologPage.newMessageText = action.newText;
+      this._callSubscriber(this._state);
+    }
   }
 }
 

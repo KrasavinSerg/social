@@ -13,12 +13,17 @@ const Diologs = (props) => {
   let newTextElement = React.createRef();
   
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch({
+      type : 'ADD-MESSAGE'
+    });
   }
 
   let onMessageChange = () => {
     let text = newTextElement.current.value;
-    props.updateNewMessageText(text);
+    props.dispatch({
+      type : 'UPDATE-NEW-MESSAGE-TEXT',
+      newText : text
+    });
   };
 
   return (

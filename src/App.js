@@ -21,13 +21,11 @@ function App(props) {
           <div className='app-wrapper-content'>
             <Route path='/Diologs' render={() => <Diologs 
               diologPage={props.state.diologPage} 
-              addMessage={props.addMessage}
-              updateNewMessageText={props.updateNewMessageText}
+              dispatch={props.dispatch}
             />} />
             <Route path='/Profile' render={() => <Profile 
               profilePage={props.state.profilePage} 
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText}
+              dispatch={props.dispatch}
             />} />
             <Route path='/News' component={News} />
             <Route path='/Music' component={Music} />
