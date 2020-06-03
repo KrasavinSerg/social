@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Diologs.module.scss';
 import DiologItem from './DiologItem/DiologItem';
 import Message from './Message/Message';
+import {addMessageActionCreater, updateNewMessageActionCreater} from '../../redux/state'
 
 
 const Diologs = (props) => {
@@ -13,17 +14,12 @@ const Diologs = (props) => {
   let newTextElement = React.createRef();
   
   let addMessage = () => {
-    props.dispatch({
-      type : 'ADD-MESSAGE'
-    });
+    props.dispatch(addMessageActionCreater());
   }
 
   let onMessageChange = () => {
     let text = newTextElement.current.value;
-    props.dispatch({
-      type : 'UPDATE-NEW-MESSAGE-TEXT',
-      newText : text
-    });
+    props.dispatch(updateNewMessageActionCreater(text));
   };
 
   return (
