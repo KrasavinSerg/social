@@ -11,14 +11,12 @@ const Diologs = (props) => {
   
   let messageElement = props.diologPage.messageData.map((el) => <Message message={el.message} />);
   
-  let newTextElement = React.createRef();
-  
   let addMessage = () => {
     props.dispatch(addMessageActionCreater());
   }
 
-  let onMessageChange = () => {
-    let text = newTextElement.current.value;
+  let onMessageChange = (e) => {
+    let text = e.target.value;
     props.dispatch(updateNewMessageActionCreater(text));
   };
 
@@ -30,8 +28,14 @@ const Diologs = (props) => {
       <ul>
         {messageElement}
       </ul>
-      <textarea onChange={onMessageChange} ref={newTextElement} value={props.diologPage.newMessageText}></textarea>
-      <button onClick={addMessage}>Add text</button>
+      <div>
+        <textarea 
+          onChange={onMessageChange} 
+          placeholder='Enter your nessage' 
+          value={props.diologPage.newMessageText}>
+        </textarea>
+        <button onClick={addMessage}>Add text</button>
+      </div>
     </div>
   );
 }

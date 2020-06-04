@@ -23,7 +23,7 @@ let store = {
         {message : 'Lorem ipsum dolor sit.'},
         {message : 'Lorem'},
       ],
-      newMessageText : 'Hello!'
+      newMessageText : ''
     },
     sidedar : {
       friends : [
@@ -39,7 +39,6 @@ let store = {
   },
 
   getState () {
-    debugger
     return this._state;
   },
 
