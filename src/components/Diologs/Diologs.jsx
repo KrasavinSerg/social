@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Diologs.module.scss';
 import DiologItem from './DiologItem/DiologItem';
 import Message from './Message/Message';
-import {addMessageActionCreater, updateNewMessageActionCreater} from '../../redux/state'
+import {addMessageActionCreater, updateNewMessageActionCreater} from '../../redux/diologPageReducer'
 
 
 const Diologs = (props) => {

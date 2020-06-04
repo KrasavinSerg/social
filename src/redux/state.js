@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import profilePageReducer from './profilePageReducer';
+import diologPageReducer from './diologPageReducer';
+import sidedarReducer from './sidedarReducer';
 
 let store = {
   _state : {
@@ -47,60 +46,12 @@ let store = {
   },
 
   dispatch (action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id : 5, 
-        message : this._state.profilePage.newPostText, 
-        likeCount : 0
-      };
-      
-      this._state.profilePage.postData.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } 
-    else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } 
-    else if (action.type === ADD_MESSAGE) {
-      let newMessage = {
-        message : this._state.diologPage.newMessageText
-      };
-    
-      this._state.diologPage.messageData.push(newMessage);
-      this._state.diologPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.diologPage.newMessageText = action.newText;
-      this._callSubscriber(this._state);
-    }
-  }
-}
 
-export const addPostActionCreater = () => {
-  return {
-    type : ADD_POST
-  }
-};
+    this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+    this._state.diologPage = diologPageReducer(this._state.diologPage, action);
+    this._state.sidedar = sidedarReducer(this._state.sidedar, action);
 
-export const updateNewPostTextActionCreater = (text) => {
-  return {
-    type : UPDATE_NEW_POST_TEXT,
-    newText : text
-  }
-};
-
-export const addMessageActionCreater = () => {
-  return {
-    type : ADD_MESSAGE
-  }
-}
-
-export const updateNewMessageActionCreater = (text) => {
-  return {
-    type : UPDATE_NEW_MESSAGE_TEXT,
-    newText : text
+    this._callSubscriber(this._state);
   }
 }
 
