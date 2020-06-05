@@ -1,7 +1,21 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
-const diologPageReducer = (state, action) => {
+let initialState = {
+  diologData : [
+    {id : '1', name : 'User 1', ava : 'https://img.icons8.com/color/48/000000/ninja-head.png'},
+    {id : '2', name : 'User 2', ava : 'https://img.icons8.com/color/48/000000/ninja-head.png'},
+    {id : '3', name : 'User 3', ava : 'https://img.icons8.com/color/48/000000/ninja-head.png'}
+  ],
+  messageData : [
+    {message : 'Lorem, ipsum.'},
+    {message : 'Lorem ipsum dolor sit.'},
+    {message : 'Lorem'},
+  ],
+  newMessageText : ''
+};
+
+const diologPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       let newMessage = {
