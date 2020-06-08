@@ -2,22 +2,22 @@ import React from 'react';
 import s from './Diologs.module.scss';
 import DiologItem from './DiologItem/DiologItem';
 import Message from './Message/Message';
-import {addMessageActionCreater, updateNewMessageActionCreater} from '../../redux/diologPageReducer'
-
 
 const Diologs = (props) => {
+  
+  let state = props.dialogPage;
 
-  let diologElement = props.diologPage.diologData.map((el) => <DiologItem name={el.name} id={el.id} ava={el.ava} />);
+  let diologElement = state.diologData.map((el) => <DiologItem name={el.name} id={el.id} ava={el.ava} />);
   
-  let messageElement = props.diologPage.messageData.map((el) => <Message message={el.message} />);
+  let messageElement = state.messageData.map((el) => <Message message={el.message} />);
   
-  let addMessage = () => {
-    props.dispatch(addMessageActionCreater());
+  let onAddMessage = () => {
+    props.addMessage();
   }
 
   let onMessageChange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateNewMessageActionCreater(text));
+    props.updateNewMessage(text);
   };
 
   return (
@@ -32,9 +32,9 @@ const Diologs = (props) => {
         <textarea 
           onChange={onMessageChange} 
           placeholder='Enter your nessage' 
-          value={props.diologPage.newMessageText}>
+          value={state.newMessageText}>
         </textarea>
-        <button onClick={addMessage}>Add text</button>
+        <button onClick={onAddMessage}>Add text</button>
       </div>
     </div>
   );

@@ -3,11 +3,11 @@ import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
-import Diologs from './components/Diologs/Diologs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from 'react-router-dom';
+import DiologsContainer from './components/Diologs/DiologsContainer';
 
 
 function App(props) {
@@ -18,14 +18,8 @@ function App(props) {
           <Header />
           <Sidebar state={props.state.sidedar} />
           <div className='app-wrapper-content'>
-            <Route path='/Diologs' render={() => <Diologs 
-              diologPage={props.state.diologPage} 
-              dispatch={props.dispatch}
-            />} />
-            <Route path='/Profile' render={() => <Profile 
-              profilePage={props.state.profilePage} 
-              dispatch={props.dispatch}
-            />} />
+            <Route path='/Diologs' render={() => <DiologsContainer store={props.store} />} />
+            <Route path='/Profile' render={() => <Profile store={props.store} />} />
             <Route path='/News' component={News} />
             <Route path='/Music' component={Music} />
             <Route path='/Settings' component={Settings} />
