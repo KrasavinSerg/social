@@ -1,10 +1,9 @@
 import React from 'react';
 import s from './Sidebar.module.scss';
 import {NavLink} from 'react-router-dom';
-import Friends from './Friends/Friends';
+// import Friends from './Friends/Friends';
 
-const Sidebar = (props) => {
-  
+const Sidebar = () => {
   return (
     <div className={s.sidebar_wrap}>
       <nav className={s.nav}>
@@ -26,7 +25,7 @@ const Sidebar = (props) => {
           </li>
         </ul>
       </nav>
-      <Friends friendsData={props.state.friends} />
+      {/* <Friends /> */}
     </div>
   );
 }

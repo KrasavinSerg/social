@@ -1,9 +1,10 @@
 import React from 'react';
 import s from './Friends.module.scss';
 
-const Friends = (props) => {
+const Friends = (state) => {
+  debugger
 
-  let friendElement = props.friendsData.map((el) => {
+  let friendElement = state.sidedar.friends.map((el) => {
     return (
       <li>
         <img src={el.ava} alt='avatarka'/>

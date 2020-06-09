@@ -10,16 +10,16 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import DiologsContainer from './components/Diologs/DiologsContainer';
 
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <div className='app-container'>
         <div className='app-wrapper'>
           <Header />
-          <Sidebar state={props.state.sidedar} />
+          <Sidebar />
           <div className='app-wrapper-content'>
-            <Route path='/Diologs' render={() => <DiologsContainer store={props.store} />} />
-            <Route path='/Profile' render={() => <Profile store={props.store} />} />
+            <Route path='/Diologs' render={() => <DiologsContainer />} />
+            <Route path='/Profile' render={() => <Profile />} />
             <Route path='/News' component={News} />
             <Route path='/Music' component={Music} />
             <Route path='/Settings' component={Settings} />

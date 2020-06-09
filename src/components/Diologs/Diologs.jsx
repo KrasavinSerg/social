@@ -5,11 +5,9 @@ import Message from './Message/Message';
 
 const Diologs = (props) => {
   
-  let state = props.dialogPage;
-
-  let diologElement = state.diologData.map((el) => <DiologItem name={el.name} id={el.id} ava={el.ava} />);
+  let diologElement = props.diologPage.diologData.map((el) => <DiologItem name={el.name} id={el.id} ava={el.ava} />);
   
-  let messageElement = state.messageData.map((el) => <Message message={el.message} />);
+  let messageElement = props.diologPage.messageData.map((el) => <Message message={el.message} />);
   
   let onAddMessage = () => {
     props.addMessage();
@@ -32,7 +30,7 @@ const Diologs = (props) => {
         <textarea 
           onChange={onMessageChange} 
           placeholder='Enter your nessage' 
-          value={state.newMessageText}>
+          value={props.diologPage.newMessageText}>
         </textarea>
         <button onClick={onAddMessage}>Add text</button>
       </div>

@@ -3,24 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './redux/reduxStore';
+import {Provider} from 'react-redux';
 
-let rerenderEntireTree = (state) => {
-  // debugger
+let rerenderEntireTree = () => {
+  debugger
   ReactDOM.render(
     <React.StrictMode>
-      <App 
-        state={state} 
-        // dispatch={store.dispatch.bind(store)} 
-        store={store}
-      />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(() => {
-  let state = store.getState();
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 });
