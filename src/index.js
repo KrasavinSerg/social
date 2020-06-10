@@ -6,7 +6,6 @@ import store from './redux/reduxStore';
 import {Provider} from 'react-redux';
 
 let rerenderEntireTree = () => {
-  debugger
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
