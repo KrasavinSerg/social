@@ -17,26 +17,25 @@ let initialState = {
 
 const diologPageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE: {
+    case ADD_MESSAGE: 
       let newMessage = {
         message : state.newMessageText
       };
 
-      let stateCopy = {...state};
-      stateCopy.messageData = [...state.messageData];
-      stateCopy.messageData.push(newMessage);
-      stateCopy.newMessageText = '';
-      return stateCopy;
-    }
+      return {
+        ...state,
+        messageData : [...state.messageData, newMessage],
+        newMessageText : ''
+      };
 
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      let stateCopy = {...state};
-      stateCopy.newMessageText = action.newText;
-      return stateCopy;
-    }
+    case UPDATE_NEW_MESSAGE_TEXT:
+      return {
+        ...state,
+        newMessageText : action.newText
+      };
 
     default:
-      return state;  
+      return state;
   }
 };
 
