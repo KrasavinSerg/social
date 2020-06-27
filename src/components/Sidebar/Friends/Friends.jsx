@@ -5,7 +5,7 @@ const Friends = (props) => {
   
   let friendElement = props.sidedar.friends.map((el) => {
     return (
-      <li>
+      <li key={el.id}>
         <img src={el.ava} alt='avatarka'/>
         <span>{el.name}</span>
       </li>
