@@ -2,3 +2,27 @@
   width: 100px;
   height: auto;
 }
+
+.pagination {
+  
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #999;
+    }
+  }
+
+  .active {
+    font-weight: bold;
+  }
+}
