@@ -31,34 +31,38 @@ let Users = (props) => {
           </NavLink>
           <div>
             {u.followed 
-              ? <button onClick={() => {
+              ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                 // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                 //   withCredentials: true,
                 //   headers: {
                 //     'API-KEY': 'cfbce4cf-eeea-4650-8beb-2254170799ce'
                 //   }
                 // })
+                props.toggleFollowingProgress(true, u.id);
                 usersAPI.unfollow(u.id)
                 .then(data => {
                     if (data.resultCode === 0) {
                       props.unfollow(u.id);
                     }
+                    props.toggleFollowingProgress(false, u.id);
                   });
                 }
               }>unfollow</button> 
 
-              : <button onClick={() => {
+              : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                 // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                 //   withCredentials: true,
                 //   headers: {
                 //     'API-KEY': 'cfbce4cf-eeea-4650-8beb-2254170799ce'
                 //   }
                 // })
+                props.toggleFollowingProgress(true, u.id);
                 usersAPI.follow(u.id)
                   .then(data => {
                     if (data.resultCode === 0) {
                       props.follow(u.id);    
                     }
+                    props.toggleFollowingProgress(false, u.id);
                   });
                 }
               }>follow</button>}
