@@ -2,8 +2,6 @@ import React from 'react';
 import s from './Users.module.scss';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-// import * as axios from 'axios';
-import { usersAPI } from '../../api/api';
 
 let Users = (props) => {
 
@@ -32,38 +30,12 @@ let Users = (props) => {
           <div>
             {u.followed 
               ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                //   withCredentials: true,
-                //   headers: {
-                //     'API-KEY': 'cfbce4cf-eeea-4650-8beb-2254170799ce'
-                //   }
-                // })
-                props.toggleFollowingProgress(true, u.id);
-                usersAPI.unfollow(u.id)
-                .then(data => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(u.id);
-                    }
-                    props.toggleFollowingProgress(false, u.id);
-                  });
+                  props.unfollow(u.id);
                 }
               }>unfollow</button> 
 
               : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                //   withCredentials: true,
-                //   headers: {
-                //     'API-KEY': 'cfbce4cf-eeea-4650-8beb-2254170799ce'
-                //   }
-                // })
-                props.toggleFollowingProgress(true, u.id);
-                usersAPI.follow(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id);    
-                    }
-                    props.toggleFollowingProgress(false, u.id);
-                  });
+                  props.follow(u.id);
                 }
               }>follow</button>}
           </div>  
